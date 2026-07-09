@@ -36,6 +36,8 @@ Source files:
 - `files/<LANGUAGE>/glossary.json`: optional automation glossary for translation runs
 - `files/<LANGUAGE>/translation_cache.json`: optional automation cache for translation runs
 
+For `proceliotool`-only generation, `language.json` and `image.png` are the only critical files for your language. If using the Python helper tools, the others may be generated.
+
 Generated output:
 - `build/<LANGUAGE>/language.json`
 - `build/<LANGUAGE>/image.png`
@@ -47,6 +49,8 @@ Templates copied by scripts:
 ## Automated Translation Script
 
 For a faster first draft, this repository also includes `auto_translate.py`.
+
+##### Note: The Procelio development team will not accept translations which are *wholly* machine-generated: we could do that ourselves. We understand the value of machine translation work especially for building a first draft and accept that, but we ask that any submissions include at least one full round of human review and revision so we can all be proud of the quality of the community translations we're making available to the players.
 
 What it does:
 - Creates or reuses a temporary Python virtual environment
@@ -163,7 +167,7 @@ Merge order:
 
 For mass-release, lang files must be built and deployed serverside by one of the devs.
 
-For local testing, your built .lang file can be put in the `localization` subfolder in Unity's PersistentDataPath. (`C:\Users\brenn\AppData\LocalLow\Procul Games\Procelio\localization\English.lang`, for example, on Windows). If the folder doesn't exist, you can create it yourself. Run Procelio, and the file should be visible in Settings -> Game Settings -> Language
+For local testing, your built .lang file can be put in the `localization` subfolder in Unity's PersistentDataPath. (`C:\Users\brenn\AppData\LocalLow\Ironshell Studios\Procelio\localization\English.lang`, for example, on Windows). If the folder doesn't exist, you can create it yourself. Run Procelio, and the file should be visible in Settings -> Game Settings -> Language
 
 ## Customizing Translation Files
 
