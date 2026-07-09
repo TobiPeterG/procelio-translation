@@ -525,6 +525,7 @@ botfile-import-header
 botfile-import-subheader
 bot-remaps-global
 brightness
+build-advanced-controls
 build-advanced-desc
 build-advanced-header
 build-cust-equipped-cosmetics
@@ -546,11 +547,13 @@ buy
 buy-garage
 buy-garage-cap
 buy-garage-funds
+character-name-accountserver
 character-name-craig
 character-name-frontiersmen
 character-name-hypox
 character-name-tutorialbot
 character-name-unknown
+character-title-accountserver
 character-title-craig
 character-title-frontiersmen
 character-title-hypox
@@ -749,6 +752,7 @@ damagetest-weapon-select
 dashboard-meter-
 dashboard-meter-collective
 dashboard-meter-lta
+dashboard-meter-tank
 dashboard-stat-
 dashboard-stat-barrier
 dashboard-stat-chaff
@@ -759,6 +763,10 @@ dashboard-stat-invincible
 dashboard-stat-oob
 dashboard-stat-overdraw
 dashboard-stat-thrust
+death-console-dyn-1
+death-console-dyn-2
+death-console-dyn-3
+death-console-dyn-4
 delete-account
 delete-account-body
 delete-account-confirmbody
@@ -789,6 +797,7 @@ dsar-query-ok
 dynamicresolution
 early-access-title
 early-access-warning
+ea-view-roadmap
 edit-bot
 email-to-reset-password
 energy-overdraw-charging
@@ -805,6 +814,7 @@ exit-game
 exit-test-mode
 faction-name-frontiersmen
 faction-name-hypox
+faction-name-ironshelldef
 faction-name-neutral
 faction-name-osprey
 flip-instruction-1
@@ -818,6 +828,7 @@ floating-queue-title
 fov
 fps-limit
 friendreq-recv
+friendreq-sent
 friends
 friends-friendlist
 fullscreen
@@ -1122,6 +1133,8 @@ key-uiminimaptoggle
 key-uimusicmute
 key-uimusicskip
 key-uitogglefps
+killfeed-joined
+killfeed-left
 language
 language-settings-title
 leave-squad
@@ -1131,6 +1144,7 @@ link-standalone
 link-steam
 link-steam-account
 loading-assets-description
+loading-connecting-to-steam
 loading-error-accountstate-description
 loading-error-cullbots-description
 loading-error-stats-description
@@ -1529,6 +1543,7 @@ ma_tollum-title
 maindesc-garage
 maindesc-logbook
 maindesc-online
+maindesc-tutorial
 maplocation-alpha-prospect
 maplocation-deimos-nexus
 maplocation-feldspar-valley
@@ -1537,6 +1552,7 @@ maplocation-icarus-north
 mapname-alpha-prospect
 mapname-deimos-nexus
 mapname-feldspar-valley
+mapname-home-high-mars-orbit
 mapname-icarus-north
 mars_radio_guide_deimos_nexus-body
 mars_radio_guide_deimos_nexus-title
@@ -1551,6 +1567,7 @@ mars_travel_guide_trains-title
 master-volume
 match-connecting
 match-loading
+matchmaking-connection-error
 matchmaking-estimated
 matchmaking-failed-body
 matchmaking-failed-title
@@ -1559,6 +1576,7 @@ matchmaking-ready
 max-amp-exceeded
 menu-button
 mm-friends-list
+mm-tutorialnotice-desc
 mm-tutorialnotice-title
 mode-asset-extraction
 mode-contest-capture
@@ -1586,6 +1604,10 @@ nf-demo-submit-feedback
 online-battles-not-paused
 only-host-pick-mode
 oob-console
+oob-console-dyn-1
+oob-console-dyn-2
+oob-console-dyn-3
+oob-console-dyn-4
 oob-disconnected
 oob-lastlocation
 oob-standby
@@ -1607,11 +1629,14 @@ PAINT-PALETTES
 paint-palette-standard
 paint-premiumonly-body
 paint-premiumonly-title
+paint-tooltip-fill
+paint-tooltip-single
 pant-open-paint-tool
 pant-save-palette
 password
 play-button
 players-blocked
+play-tutorial
 prefab-cloud-upload
 prefab-desc-00
 prefab-desc-01
@@ -1629,6 +1654,7 @@ prefab-error-parts-locked
 prefab-error-parts-unavailable
 prefab-error-parts-unpurchased
 prefab-export-confirmation
+prefab-import-log-template
 prefab-import-only-available-parts
 prefab-instructions-export
 prefab-instructions-import
@@ -1646,7 +1672,11 @@ prefab-warning-cosmetics
 prefab-warning-invalid
 prefab-warning-overamp
 prefab-warning-premium
+prereq-all
+prereq-any
+prereq-requires
 press-any-key
+queue-backfill-existing
 queue-botpicker-warning-1
 queue-botpicker-warning-2
 queue-gamemode-desc
@@ -1682,6 +1712,7 @@ report-cause-chatbehavior
 report-cause-hacking
 report-cause-obscenebot
 request-dsar
+requisitions-available-reminder
 resolution
 respawn-console
 respawning-time
@@ -1692,6 +1723,14 @@ return-to-game
 return-to-main-menu
 reward-screen-title
 rewards-notification
+roadmap-cat-coming-later
+roadmap-cat-coming-soon
+roadmap-cat-future
+roadmap-desc
+roadmap-list-coming-later
+roadmap-list-coming-soon
+roadmap-list-future
+roadmap-title
 robot-name
 robot-validate-error-disconnect
 robot-validate-error-maxcosmcpu
@@ -1722,6 +1761,7 @@ screen-space-global-illumination
 screen-space-reflections
 self-destruct
 server-connect-error
+server-connection-lost
 server-lookup-error
 setting-join-globalchat
 settings-control-profile
@@ -1739,7 +1779,10 @@ shop-help-title
 sign-in-options
 sign-in-procelio
 social-add-new-friend
+social-block-a-user
+social-hide-invite-code
 social-hide-offline-friends
+social-join-with-code
 social-lists
 social-menu
 social-paste-invite-code
@@ -1773,6 +1816,9 @@ steamlogin-branch-title
 steamlogin-username-desc
 steamlogin-username-title
 system-log
+tank-gear
+tank-gear-high
+tank-gear-low
 tank-sprint-toggle
 tech-101-desc
 tech-101-name
