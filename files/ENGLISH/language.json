@@ -49,6 +49,10 @@
       "value": "Loading Data..."
     },
     {
+      "name": "loading-connecting-to-steam",
+      "value": "Connecting to Steam..."
+    },
+    {
       "name": "loading-server-description",
       "value": "Checking for updated part statistics"
     },
@@ -167,6 +171,26 @@
     {
       "name": "acct-link-err-authfail-description",
       "value": "Failed to authenticate Steam account"
+    },
+    {
+      "name": "nf-demo-need-feedback",
+      "value": "HELP US IMPROVE PROCELIO!"
+    },
+    {
+      "name": "nf-demo-submit-feedback",
+      "value": "SUBMIT FEEDBACK"
+    },
+    {
+      "name": "character-name-accountserver",
+      "value": "Dev Message"
+    },
+    {
+      "name": "character-title-accountserver",
+      "value": "From the desks of Ironshell Studios"
+    },
+    {
+      "name": "faction-name-ironshelldef",
+      "value": "Ironshell Studios LLC"
     },
     {
       "name": "confirm-graphics-title",
@@ -617,6 +641,10 @@
       "value": "Custom Palette #"
     },
     {
+      "name": "mapname-home-high-mars-orbit",
+      "value": "Test Environment"
+    },
+    {
       "name": "mapname-alpha-prospect",
       "value": "Alpha Prospect"
     },
@@ -725,6 +753,18 @@
       "value": "Approaching goal"
     },
     {
+      "name": "prereq-requires",
+      "value": "Requires:"
+    },
+    {
+      "name": "prereq-any",
+      "value": "ANY"
+    },
+    {
+      "name": "prereq-all",
+      "value": "ALL"
+    },
+    {
       "name": "inv-tooltip-availability",
       "value": "Available: %ct"
     },
@@ -750,7 +790,7 @@
     },
     {
       "name": "stat-cpu",
-      "value": "Power Usage: %s"
+      "value": "AMP Usage: %s"
     },
     {
       "name": "stat-price",
@@ -2650,7 +2690,7 @@
     },
     {
       "name": "block-mod_dash-desc",
-      "value": "On activation, create a singularity that displaces bot in desired direction.\n\nStacking improves energy consumption."
+      "value": "On activation, create a singularity that displaces bot in desired direction.\n\nStacking grants additional charges."
     },
     {
       "name": "block-mod_flare-name",
@@ -2666,7 +2706,7 @@
     },
     {
       "name": "block-mod_fuel-desc",
-      "value": "On activation, expend turbofuel to tremendously increase thrust output of thrusters that align with the module.\n\nStacking improves energy consumption."
+      "value": "On activation, expend turbofuel to tremendously increase thrust output of thrusters that align with the module.\n\nStacking grants additional fuel, and usage in multiple directions."
     },
     {
       "name": "block-mod_shockwave-name",
@@ -2674,7 +2714,7 @@
     },
     {
       "name": "block-mod_shockwave-desc",
-      "value": "On activation, release a radial blast that damages and pushes enemy bots away.\n\nStacking increases blast force and radius."
+      "value": "On activation, release a radial blast that damages and pushes enemy bots away.\n\nStacking grants additional charges."
     },
     {
       "name": "block-mod_overshield-name",
@@ -3449,6 +3489,10 @@
       "value": "Place parts with advanced orientation control."
     },
     {
+      "name": "build-advanced-controls",
+      "value": "BOT SHIFT KEYS MOVE SELECTED PART.\n\n${GarageRotateGhostX} ROTATE X\n${GarageRotateGhostY} ROTATE Y\n${GarageRotateGhostZ} ROTATE Z\n\n${GarageEnableAdvanced} + ${GarageUndoRedo} UNDO\n${GarageEnableAdvanced} + ${GarageRedoModifier} + ${GarageUndoRedo} REDO"
+    },
+    {
       "name": "build-cust-held-cosmetic",
       "value": "Held Cosmetic"
     },
@@ -3947,6 +3991,70 @@
     {
       "name": "assetextract-bank-stealing",
       "value": "Stealing Points..."
+    },
+    {
+      "name": "tank-gear",
+      "value": "GEAR"
+    },
+    {
+      "name": "tank-gear-low",
+      "value": "LOW"
+    },
+    {
+      "name": "tank-gear-high",
+      "value": "HIGH"
+    },
+    {
+      "name": "paint-tooltip-single",
+      "value": "Paint Target Block <color=#FF7500>${GaragePlaceBlock}</color>"
+    },
+    {
+      "name": "paint-tooltip-fill",
+      "value": "Fill / Replace Target Color <color=#FF7500>${GarageRemoveBlock}</color>"
+    },
+    {
+      "name": "death-console-dyn-1",
+      "value": "Critical damage sustained. Ensuring asset security."
+    },
+    {
+      "name": "death-console-dyn-2",
+      "value": "Core overload protocol complete."
+    },
+    {
+      "name": "death-console-dyn-3",
+      "value": "Salvage team notified."
+    },
+    {
+      "name": "death-console-dyn-4",
+      "value": "Replacement unit deploying . . . . ."
+    },
+    {
+      "name": "oob-console-dyn-1",
+      "value": "Initiated Core self-destruct protocol . . . Complete."
+    },
+    {
+      "name": "oob-console-dyn-2",
+      "value": "Last known location logged. Salvage team notified."
+    },
+    {
+      "name": "oob-console-dyn-3",
+      "value": "User activity investigation pending."
+    },
+    {
+      "name": "oob-console-dyn-4",
+      "value": "Replacement unit deploying . . . . ."
+    },
+    {
+      "name": "killfeed-joined",
+      "value": "joined"
+    },
+    {
+      "name": "killfeed-left",
+      "value": "left"
+    },
+    {
+      "name": "server-connection-lost",
+      "value": "Server Connection Lost\nPlease stand by"
     },
     {
       "name": "match-connecting",
@@ -4998,15 +5106,27 @@
     },
     {
       "name": "view-logbook",
-      "value": "Play Tutorial"
+      "value": "View Logbook"
     },
     {
       "name": "maindesc-logbook",
+      "value": "View your Osprey Employee Logbook."
+    },
+    {
+      "name": "play-tutorial",
+      "value": "Play Tutorial"
+    },
+    {
+      "name": "maindesc-tutorial",
       "value": "Learn the basics of Procelio."
     },
     {
       "name": "mm-tutorialnotice-title",
       "value": "New player?"
+    },
+    {
+      "name": "mm-tutorialnotice-desc",
+      "value": "Check out the tutorial, it will give you a basic overview of the game."
     },
     {
       "name": "mm-friends-list",
@@ -5037,12 +5157,8 @@
       "value": "Procelio is still in active development! You may run across missing or unfinished features."
     },
     {
-      "name": "nf-demo-need-feedback",
-      "value": "HELP US IMRPOVE PROCELIO!"
-    },
-    {
-      "name": "nf-demo-submit-feedback",
-      "value": "SUBMIT FEEDBACK"
+      "name": "ea-view-roadmap",
+      "value": "VIEW ROADMAP"
     },
     {
       "name": "social-menu",
@@ -5065,16 +5181,24 @@
       "value": "leave squad"
     },
     {
-      "name": "social-squad-invite-code",
-      "value": "YOUR SQUAD INVITE CODE"
-    },
-    {
       "name": "invite-via-steam",
       "value": "invite via steam"
     },
     {
+      "name": "social-squad-invite-code",
+      "value": "YOUR SQUAD INVITE CODE"
+    },
+    {
+      "name": "social-hide-invite-code",
+      "value": "Hide Invite Code"
+    },
+    {
       "name": "social-paste-invite-code",
       "value": "JOIN SQUAD WITH CODE"
+    },
+    {
+      "name": "social-join-with-code",
+      "value": "join with code"
     },
     {
       "name": "social-hide-offline-friends",
@@ -5085,11 +5209,19 @@
       "value": "ADD NEW FRIEND"
     },
     {
+      "name": "social-block-a-user",
+      "value": "BLOCK A USER"
+    },
+    {
       "name": "social-lists",
       "value": "FRIEND REQUESTS"
     },
     {
       "name": "friendreq-recv",
+      "value": "incoming friend requests"
+    },
+    {
+      "name": "friendreq-sent",
       "value": "Outgoing Friend Requests"
     },
     {
@@ -5139,6 +5271,38 @@
     {
       "name": "chat-context-close-dm",
       "value": "Block"
+    },
+    {
+      "name": "roadmap-title",
+      "value": "procelio - early access roadmap"
+    },
+    {
+      "name": "roadmap-desc",
+      "value": "Welcome to the procelio roadmap! Do note that we're a very small team working on this game: this roadmap is meant to communicate our priorities and intentions, but we cannot guarantee a 100% accurate date for new content releases."
+    },
+    {
+      "name": "roadmap-cat-coming-soon",
+      "value": "COMING SOON"
+    },
+    {
+      "name": "roadmap-list-coming-soon",
+      "value": "- New Core Gamemode: Asset Extraction\n- Physics stability improvements\n- Robot Builder QoL Upgrades\n- Current weapon + part improvements \n- Performance improvements and optimizations\n- UI readability and navigation improvements\n- Trial Bot system expansion"
+    },
+    {
+      "name": "roadmap-cat-coming-later",
+      "value": "COMING LATER"
+    },
+    {
+      "name": "roadmap-list-coming-later",
+      "value": "- Gamemode refinements\n- New online map\n- More early-game parts\n- New Primary Weapon(s)\n- New Secondary Weapon(s)\n- Voice-acted Mission Control"
+    },
+    {
+      "name": "roadmap-cat-future",
+      "value": "FUTURE PLANS"
+    },
+    {
+      "name": "roadmap-list-future",
+      "value": "- Additional maps\n- New Modules\n- New lategame Ground movement parts\n- New lategame Aerial movement parts\n- Advanced build mode tools"
     },
     {
       "name": "video-tab",
@@ -5590,7 +5754,7 @@
     },
     {
       "name": "currency-info-normal-desc",
-      "value": "Company credits are paid out for performance in battles.\n\nYou can spend your company credits on requisitions, parts, cosmetics, or prefabs.\n\nCredits are capped at 100k, to encourage employee expenditure."
+      "value": "Company credits are paid out for performance in battles.\n\nYou can spend your company credits on requisitions, parts, cosmetics, or prefabs."
     },
     {
       "name": "currency-info-premium-title",
@@ -5607,6 +5771,10 @@
     {
       "name": "credit-cap-warning-desc",
       "value": "Osprey Modular Hardware regrets to inform you that you have hit the internal company credit cap alloted to Zulu-class employees. \n\nConsider spending your company credits on requisitions, parts, cosmetics, or prefabs."
+    },
+    {
+      "name": "requisitions-available-reminder",
+      "value": "You can afford to unlock new requisitions"
     },
     {
       "name": "max-amp-exceeded",
@@ -5759,6 +5927,10 @@
     {
       "name": "dashboard-meter-",
       "value": "METER"
+    },
+    {
+      "name": "dashboard-meter-tank",
+      "value": "GEAR"
     },
     {
       "name": "dashboard-meter-collective",
@@ -5953,6 +6125,10 @@
       "value": "Ready Up"
     },
     {
+      "name": "queue-backfill-existing",
+      "value": "Backfill Into Existing Matches"
+    },
+    {
       "name": "queue-squad-not-ready",
       "value": "squad not ready"
     },
@@ -6039,6 +6215,10 @@
     {
       "name": "queue-gamemode-deselect",
       "value": "deselect gamemode"
+    },
+    {
+      "name": "matchmaking-connection-error",
+      "value": "ERROR: UNABLE TO CONNECT TO MATCHMAKING SERVER.\n\nPLEASE CHECK YOUR NETWORK.\n\n\n\n\n\nTry a VPN or Cloudflare Warp if this persists but you're still able to log in. Certain players, especially in Russia, have reported that their ISP blocks our hosting service."
     },
     {
       "name": "floating-queue-title",
@@ -6218,7 +6398,7 @@
     },
     {
       "name": "exit-test-mode",
-      "value": "| L"
+      "value": "Exit Test Mode"
     },
     {
       "name": "toggle-damage-tester",
@@ -6298,7 +6478,7 @@
     },
     {
       "name": "prefab-warning-overamp",
-      "value": "file '???' imported"
+      "value": "Prefab exceeds AMP Limit"
     },
     {
       "name": "prefab-warning-invalid",
@@ -6371,6 +6551,10 @@
     {
       "name": "botfile-import-filepath",
       "value": "import file path"
+    },
+    {
+      "name": "prefab-import-log-template",
+      "value": "file '???' imported"
     },
     {
       "name": "infolog_ffffff_test_run_please_ignore-title",
@@ -6626,7 +6810,7 @@
     },
     {
       "name": "infolog_39_tank_gears-body",
-      "value": "When using Tank Tracks, hold ${RobotDriveDown} to enter high gear. While in high gear, your direct drive power and speed is greatly increased, at the cost of turning ability. Use it to cover long distances outside of combat, or for a faster escape. Be wary of the short cooldown when switching gears."
+      "value": "When using Tank Tracks, press  ${RobotDriveDown} to enter high gear. While in high gear, your direct drive power and speed is greatly increased, at the cost of turning ability. Use it to cover long distances outside of combat, or for a faster escape. Be wary of the short cooldown when switching gears. You can switch between toggle and hold behaviors in the settings menu."
     },
     {
       "name": "infolog_41_advanced_build_mode-title",
