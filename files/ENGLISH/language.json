@@ -3490,7 +3490,7 @@
     },
     {
       "name": "build-advanced-controls",
-      "value": "BOT SHIFT KEYS MOVE SELECTED PART.\n\n${GarageRotateGhostX} ROTATE X\n${GarageRotateGhostY} ROTATE Y\n${GarageRotateGhostZ} ROTATE Z\n\n${GarageEnableAdvanced} + ${GarageUndoRedo} UNDO\n${GarageEnableAdvanced} + ${GarageRedoModifier} + ${GarageUndoRedo} REDO"
+      "value": "BOTH SHIFT KEYS MOVE SELECTED PART.\n\n${GarageRotateGhostX} ROTATE X\n${GarageRotateGhostY} ROTATE Y\n${GarageRotateGhostZ} ROTATE Z\n\n${GarageEnableAdvanced} + ${GarageUndoRedo} UNDO\n${GarageEnableAdvanced} + ${GarageRedoModifier} + ${GarageUndoRedo} REDO"
     },
     {
       "name": "build-cust-held-cosmetic",
@@ -5218,7 +5218,7 @@
     },
     {
       "name": "friendreq-recv",
-      "value": "incoming friend requests"
+      "value": "Incoming friend requests"
     },
     {
       "name": "friendreq-sent",
@@ -6222,7 +6222,7 @@
     },
     {
       "name": "floating-queue-title",
-      "value": "iN QUEUE..."
+      "value": "IN QUEUE..."
     },
     {
       "name": "floating-queue=gamemode",
