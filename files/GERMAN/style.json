@@ -29,6 +29,18 @@
     },
     "website": {
       "size": 22
+    },
+    "return-to-game": {
+      "size": 35
+    },
+    "self-destruct": {
+      "size": 35
+    },
+    "quit-to-garage": {
+      "size": 35
+    },
+    "options": {
+      "size": 35
     }
   }
 }
