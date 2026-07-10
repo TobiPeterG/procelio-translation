@@ -41,6 +41,12 @@
     },
     "options": {
       "size": 35
+    },
+    "oob-uplink-killed": {
+      "size": 30
+    },
+    "oob-uplink": {
+      "size": 30
     }
   }
 }
