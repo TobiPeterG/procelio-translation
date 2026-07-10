@@ -49,6 +49,10 @@
       "value": "Daten werden geladen..."
     },
     {
+      "name": "loading-connecting-to-steam",
+      "value": "Mit Steam verbinden..."
+    },
+    {
       "name": "loading-server-description",
       "value": "Prüfe auf aktualisierte Teilestatistiken"
     },
@@ -167,6 +171,26 @@
     {
       "name": "acct-link-err-authfail-description",
       "value": "Die Authentifizierung des Steam-Accounts ist fehlgeschlagen"
+    },
+    {
+      "name": "nf-demo-need-feedback",
+      "value": "HILF UNS, PROCELIO ZU VERBESSERN!"
+    },
+    {
+      "name": "nf-demo-submit-feedback",
+      "value": "FEEDBACK SENDEN"
+    },
+    {
+      "name": "character-name-accountserver",
+      "value": "Entwicklernachricht"
+    },
+    {
+      "name": "character-title-accountserver",
+      "value": "Von den Schreibtischen der Ironshell Studios"
+    },
+    {
+      "name": "faction-name-ironshelldef",
+      "value": "Ironshell Studios LLC"
     },
     {
       "name": "confirm-graphics-title",
@@ -617,6 +641,10 @@
       "value": "Benutzerdefinierte Palette #"
     },
     {
+      "name": "mapname-home-high-mars-orbit",
+      "value": "Testumgebung"
+    },
+    {
       "name": "mapname-alpha-prospect",
       "value": "Alpha Prospect"
     },
@@ -666,7 +694,7 @@
     },
     {
       "name": "report-cause-hacking",
-      "value": "Hacking"
+      "value": "Hacken"
     },
     {
       "name": "chat-playercount-connected",
@@ -706,7 +734,7 @@
     },
     {
       "name": "techtree-background-text-2",
-      "value": "FLIEGEN SIE MIT OSPREY"
+      "value": "FLIEGE MIT OSPREY"
     },
     {
       "name": "ai-objective-hunt",
@@ -723,6 +751,18 @@
     {
       "name": "ai-objective-objectivefind",
       "value": "Dem Ziel annähern"
+    },
+    {
+      "name": "prereq-requires",
+      "value": "Erfordert:"
+    },
+    {
+      "name": "prereq-any",
+      "value": "BELIEBIG"
+    },
+    {
+      "name": "prereq-all",
+      "value": "ALLE"
     },
     {
       "name": "inv-tooltip-availability",
@@ -938,7 +978,7 @@
     },
     {
       "name": "garagebackground-5",
-      "value": "Weltraum-Lila"
+      "value": "Weltraum-Violett"
     },
     {
       "name": "garagebackground-6",
@@ -1026,15 +1066,15 @@
     },
     {
       "name": "cosmetic-weaponskinplaceholder5-name",
-      "value": "Weaver DDPAT"
+      "value": "Flechter DDPAT"
     },
     {
       "name": "cosmetic-weaponskinplaceholder5-desc",
-      "value": "DDPAT-Tarnhaut, färbbar."
+      "value": "DDPAT-Tarnskin, färbbar."
     },
     {
       "name": "cosmetic-weaponskingoldgauss-name",
-      "value": "Gauss Gold"
+      "value": "Gauss-Gold"
     },
     {
       "name": "cosmetic-weaponskingoldgauss-desc",
@@ -1042,7 +1082,7 @@
     },
     {
       "name": "cosmetic-weaponskincarbongauss-name",
-      "value": "Gauss Carbon"
+      "value": "Gauss-Carbon"
     },
     {
       "name": "cosmetic-weaponskincarbongauss-desc",
@@ -1670,7 +1710,7 @@
     },
     {
       "name": "weapon-category-fluxlauncher",
-      "value": "Flux Mortar"
+      "value": "Flux-Mörtel"
     },
     {
       "name": "weapon-category-rocketpod",
@@ -1692,7 +1732,7 @@
       "name": "block-alpha_whitecube-desc",
       "value": "Ihr allgemeiner 6-seitiger Hüllenblock, der Verbindungen und Schadensfluss auf allen Seiten ermöglicht."
     },
-    {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+    {
       "name": "block-alpha_whiteinner-name",
       "value": "Normale Innenecke"
     },
@@ -2650,7 +2690,7 @@
     },
     {
       "name": "block-mod_dash-desc",
-      "value": "Erzeugt bei Aktivierung eine Singularität, die den Bot in die gewünschte Richtung versetzt.\n\nMehrfaches Ausrüsten verbessert den Energieverbrauch."
+      "value": "Erzeugt bei Aktivierung eine Singularität, die den Bot in die gewünschte Richtung versetzt.\n\nMehrfachausrüstung bringt zusätzliche Ladungen."
     },
     {
       "name": "block-mod_flare-name",
@@ -2658,7 +2698,7 @@
     },
     {
       "name": "block-mod_flare-desc",
-      "value": "Gewährt bei Aktivierung vorübergehende Immunität gegen Anvisiertwerden und entfaltet ein Feld, das Nova-Projektile und -Raketen zerstört.\n\nBeim Stapeln fallen zusätzliche Gebühren an."
+      "value": "Gewährt bei Aktivierung vorübergehende Immunität gegen Anvisiertwerden und entfaltet ein Feld, das Nova-Projektile und -Raketen zerstört.\n\nMehrfachausrüstung bringt zusätzliche Ladungen."
     },
     {
       "name": "block-mod_fuel-name",
@@ -2666,7 +2706,7 @@
     },
     {
       "name": "block-mod_fuel-desc",
-      "value": "Verbraucht bei Aktivierung Turbotreibstoff, um die Schubleistung der Triebwerke, die mit dem Modul ausgerichtet sind, massiv zu erhöhen.\n\nMehrfaches Ausrüsten verbessert den Energieverbrauch."
+      "value": "Verbraucht bei Aktivierung Turbotreibstoff, um die Schubleistung der Triebwerke, die mit dem Modul ausgerichtet sind, massiv zu erhöhen.\n\nMehrfachausrüstung bringt zusätzlichen Treibstoff und die Nutzung in mehrere Richtungen."
     },
     {
       "name": "block-mod_shockwave-name",
@@ -2674,7 +2714,7 @@
     },
     {
       "name": "block-mod_shockwave-desc",
-      "value": "Bei der Aktivierung wird eine radiale Explosion ausgelöst, die gegnerischen Bots Schaden zufügt und sie wegstößt.\n\nDurch Stapeln werden die Strahlkraft und der Strahlradius erhöht."
+      "value": "Bei der Aktivierung wird eine radiale Explosion ausgelöst, die gegnerischen Bots Schaden zufügt und sie wegstößt.\n\nMehrfachausrüstung bringt zusätzliche Ladungen."
     },
     {
       "name": "block-mod_overshield-name",
@@ -3022,11 +3062,11 @@
     },
     {
       "name": "block-cosm_stickerplate4-name",
-      "value": "Osprey Bird 2x2"
+      "value": "Osprey Vogel 2x2"
     },
     {
       "name": "block-cosm_stickerplate4-desc",
-      "value": "Ein 2x2 Osprey Bird-Aufkleber. \n\nRein kosmetisch."
+      "value": "Ein 2x2 Osprey Vogel-Aufkleber. \n\nRein kosmetisch."
     },
     {
       "name": "block-cosm_stickerplate5-name",
@@ -3078,11 +3118,11 @@
     },
     {
       "name": "block-cosm_stickerplate9-name",
-      "value": "Medic 2x2"
+      "value": "Sanitäter 2x2"
     },
     {
       "name": "block-cosm_stickerplate9-desc",
-      "value": "Ein 2x2 Medic-Aufkleber. \n\nRein kosmetisch."
+      "value": "Ein 2x2 Sanitäter-Aufkleber. \n\nRein kosmetisch."
     },
     {
       "name": "block-cosm_stickerplate10-name",
@@ -3102,11 +3142,11 @@
     },
     {
       "name": "block-cosm_stickerplate12-name",
-      "value": "Brawler 2x2"
+      "value": "Schläger 2x2"
     },
     {
       "name": "block-cosm_stickerplate12-desc",
-      "value": "Ein 2x2 Brawler-Aufkleber. \n\nRein kosmetisch."
+      "value": "Ein 2x2 Schläger-Aufkleber. \n\nRein kosmetisch."
     },
     {
       "name": "block-cosm_stickerplate13-name",
@@ -3334,7 +3374,7 @@
     },
     {
       "name": "block-cosm_dev_brenn-name",
-      "value": "Brenn Cosmetic"
+      "value": "Brenn Kosmetik"
     },
     {
       "name": "block-cosm_dev_brenn-desc",
@@ -3342,7 +3382,7 @@
     },
     {
       "name": "block-cosm_dev_pan-name",
-      "value": "Pan Cosmetic"
+      "value": "Pan Kosmetik"
     },
     {
       "name": "block-cosm_dev_pan-desc",
@@ -3350,7 +3390,7 @@
     },
     {
       "name": "block-cosm_dev_kip-name",
-      "value": "Kip Cosmetic"
+      "value": "Kip Kosmetik"
     },
     {
       "name": "block-cosm_dev_kip-desc",
@@ -3358,7 +3398,7 @@
     },
     {
       "name": "block-cosm_dev_snip-name",
-      "value": "Snip Cosmetic"
+      "value": "Snip Kosmetik"
     },
     {
       "name": "block-cosm_dev_snip-desc",
@@ -3366,7 +3406,7 @@
     },
     {
       "name": "block-cosm_dev_blade-name",
-      "value": "Blade Cosmetic"
+      "value": "Blade Kosmetik"
     },
     {
       "name": "block-cosm_dev_blade-desc",
@@ -3447,6 +3487,10 @@
     {
       "name": "build-advanced-desc",
       "value": "Teile mit erweiterter Ausrichtungssteuerung platzieren."
+    },
+    {
+      "name": "build-advanced-controls",
+      "value": "BEIDE UMSCHALTTASTEN BEWEGEN AUSGEWÄHLTE TEILE.\n\n${GarageRotateGhostX} ROTIERE X\n${GarageRotateGhostY} ROTIERE Y\n${GarageRotateGhostZ} ROTIERE Z\n\n${GarageEnableAdvanced} + ${GarageUndoRedo} RÜCKGÄNGIG\n${GarageEnableAdvanced} + ${GarageRedoModifier} + ${GarageUndoRedo} WIEDERHERSTELLEN"
     },
     {
       "name": "build-cust-held-cosmetic",
@@ -3949,6 +3993,70 @@
       "value": "Punkte stehlen..."
     },
     {
+      "name": "tank-gear",
+      "value": "GANG"
+    },
+    {
+      "name": "tank-gear-low",
+      "value": "NIEDRIG"
+    },
+    {
+      "name": "tank-gear-high",
+      "value": "HOCH"
+    },
+    {
+      "name": "paint-tooltip-single",
+      "value": "Farb-Ziel-Block <color=#FF7500>${GaragePlaceBlock}</color>"
+    },
+    {
+      "name": "paint-tooltip-fill",
+      "value": "Zielfarbe füllen/ersetzen <color=#FF7500>${GarageRemoveBlock}</color>"
+    },
+    {
+      "name": "death-console-dyn-1",
+      "value": "Kritischen Schaden erlitten. Gewährleistung der Vermögenssicherheit."
+    },
+    {
+      "name": "death-console-dyn-2",
+      "value": "Kernüberlastungsprotokoll abgeschlossen."
+    },
+    {
+      "name": "death-console-dyn-3",
+      "value": "Bergungsteam benachrichtigt."
+    },
+    {
+      "name": "death-console-dyn-4",
+      "value": "Einsetzen der Ersatzeinheit. . . . ."
+    },
+    {
+      "name": "oob-console-dyn-1",
+      "value": "Kern-Selbstzerstörungsprotokoll initiiert. . . Vollständig."
+    },
+    {
+      "name": "oob-console-dyn-2",
+      "value": "Letzten bekannter Standort protokolliert. Bergungsteam benachrichtigt."
+    },
+    {
+      "name": "oob-console-dyn-3",
+      "value": "Untersuchung der Benutzeraktivität ausstehend."
+    },
+    {
+      "name": "oob-console-dyn-4",
+      "value": "Einsetzen der Ersatzeinheit. . . . ."
+    },
+    {
+      "name": "killfeed-joined",
+      "value": "beigetreten"
+    },
+    {
+      "name": "killfeed-left",
+      "value": "verlassen"
+    },
+    {
+      "name": "server-connection-lost",
+      "value": "Serververbindung verloren\nBitte bleibe bereit"
+    },
+    {
       "name": "match-connecting",
       "value": "Verbinden..."
     },
@@ -3958,7 +4066,7 @@
     },
     {
       "name": "tech-1-name",
-      "value": "Elektrolaser-Karabiner"
+      "value": "Elektrolaser-Stutzen"
     },
     {
       "name": "tech-1-desc",
@@ -4362,7 +4470,7 @@
     },
     {
       "name": "tech-301-desc",
-      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Lagern aktiver Bots."
+      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Speichern aktiver Bots."
     },
     {
       "name": "tech-302-name",
@@ -4370,7 +4478,7 @@
     },
     {
       "name": "tech-302-desc",
-      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Lagern aktiver Bots."
+      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Speichern aktiver Bots."
     },
     {
       "name": "tech-303-name",
@@ -4378,7 +4486,7 @@
     },
     {
       "name": "tech-303-desc",
-      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Lagern aktiver Bots."
+      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Speichern aktiver Bots."
     },
     {
       "name": "tech-304-name",
@@ -4386,7 +4494,7 @@
     },
     {
       "name": "tech-304-desc",
-      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Lagern aktiver Bots."
+      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Speichern aktiver Bots."
     },
     {
       "name": "tech-305-name",
@@ -4394,7 +4502,7 @@
     },
     {
       "name": "tech-305-desc",
-      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Lagern aktiver Bots."
+      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Speichern aktiver Bots."
     },
     {
       "name": "tech-306-name",
@@ -4402,7 +4510,7 @@
     },
     {
       "name": "tech-306-desc",
-      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Lagern aktiver Bots."
+      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Speichern aktiver Bots."
     },
     {
       "name": "tech-307-name",
@@ -4410,7 +4518,7 @@
     },
     {
       "name": "tech-307-desc",
-      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Lagern aktiver Bots."
+      "value": "Ein zusätzlicher Garagenplatz zum Bauen und Speichern aktiver Bots."
     },
     {
       "name": "tech-326-name",
@@ -5017,6 +5125,10 @@
       "value": "Neuer Spieler?"
     },
     {
+      "name": "mm-tutorialnotice-desc",
+      "value": "Schaue dir das Tutorial an, es gibt dir einen grundlegenden Überblick über das Spiel."
+    },
+    {
       "name": "mm-friends-list",
       "value": "Freundesliste"
     },
@@ -5045,12 +5157,8 @@
       "value": "Procelio befindet sich noch in aktiver Entwicklung! Es gibt also noch fehlende oder unfertige Funktionen."
     },
     {
-      "name": "nf-demo-need-feedback",
-      "value": "HILF UNS, PROCELIO ZU VERBESSERN!"
-    },
-    {
-      "name": "nf-demo-submit-feedback",
-      "value": "FEEDBACK SENDEN"
+      "name": "ea-view-roadmap",
+      "value": "ROADMAP ANZEIGEN"
     },
     {
       "name": "social-menu",
@@ -5073,16 +5181,24 @@
       "value": "Trupp verlassen"
     },
     {
-      "name": "social-squad-invite-code",
-      "value": "IHR TRUPP-EINLADUNGSCODE"
-    },
-    {
       "name": "invite-via-steam",
       "value": "über Steam einladen"
     },
     {
+      "name": "social-squad-invite-code",
+      "value": "IHR TRUPP-EINLADUNGSCODE"
+    },
+    {
+      "name": "social-hide-invite-code",
+      "value": "Einladungscode ausblenden"
+    },
+    {
       "name": "social-paste-invite-code",
       "value": "TRUPP MIT CODE BEITRETEN"
+    },
+    {
+      "name": "social-join-with-code",
+      "value": "Mit Code beitreten"
     },
     {
       "name": "social-hide-offline-friends",
@@ -5093,11 +5209,19 @@
       "value": "NEUEN FREUND HINZUFÜGEN"
     },
     {
+      "name": "social-block-a-user",
+      "value": "NUTZER BLOCKIEREN"
+    },
+    {
       "name": "social-lists",
       "value": "ANFRAGEN"
     },
     {
       "name": "friendreq-recv",
+      "value": "Eingehende Freundschaftsanfragen"
+    },
+    {
+      "name": "friendreq-sent",
       "value": "Ausgehende Freundschaftsanfragen"
     },
     {
@@ -5149,8 +5273,40 @@
       "value": "Blockieren"
     },
     {
+      "name": "roadmap-title",
+      "value": "procelio – Early-Access-Roadmap"
+    },
+    {
+      "name": "roadmap-desc",
+      "value": "Willkommen bei der Procelio-Roadmap! Bitte beachte, dass wir ein sehr kleines Team sind, das an diesem Spiel arbeitet: Diese Roadmap soll unsere Prioritäten und Absichten kommunizieren, wir können jedoch kein 100% genaues Datum für die Veröffentlichung neuer Inhalte garantieren."
+    },
+    {
+      "name": "roadmap-cat-coming-soon",
+      "value": "KOMMT BALD"
+    },
+    {
+      "name": "roadmap-list-coming-soon",
+      "value": "- Neuer Kernspielmodus: Asset-Extraktion\n- Verbesserungen der Physik-Stabilität\n- Benutzerfreundlichkeit des Baumodus verbessern \n- Verbesserung der aktuellen Waffen und Teile\n- Leistungsverbesserungen und -optimierungen\n- Verbesserungen der Lesbarkeit der Benutzeroberfläche und der Navigation\n- Erweiterung des Probe-Bot-Systems"
+    },
+    {
+      "name": "roadmap-cat-coming-later",
+      "value": "KOMMT SPÄTER"
+    },
+    {
+      "name": "roadmap-list-coming-later",
+      "value": "- Verbesserungen der Spielmodi\n- Neue Online-Karte\n- Mehr Teile für den Spielbeginn\n- Neue Primärwaffe(n)\n- Neue Sekundärwaffe(n)\n- Sprachausgabe für Mission Control"
+    },
+    {
+      "name": "roadmap-cat-future",
+      "value": "ZUKÜNFTIGE PLÄNE"
+    },
+    {
+      "name": "roadmap-list-future",
+      "value": "- Zusätzliche Karten\n- Neue Module\n- Neue Bodenfortbewegungsteile für die Endphase des Spiels\n- Neue Luftfortbewegungsteile für die Endphase des Spiels\n- Erweiterte Baumodus-Werkzeuge"
+    },
+    {
       "name": "video-tab",
-      "value": "VIDEO"
+      "value": "GRAFIK"
     },
     {
       "name": "controls-tab",
@@ -5598,7 +5754,7 @@
     },
     {
       "name": "currency-info-normal-desc",
-      "value": "Firmenguthaben erhältst du für gute Leistungen in Gefechten.\n\nDu kannst dein Firmenguthaben für Freischaltungen, Teile, Kosmetik oder Fabrikate ausgeben.\n\nDas Guthaben ist auf 100.000 begrenzt, um Mitarbeiter zum Ausgeben zu motivieren."
+      "value": "Firmenguthaben erhältst du für gute Leistungen in Gefechten.\n\nDu kannst Firmenguthaben für Freischaltungen, Teile, Kosmetika oder Fabrikate ausgeben."
     },
     {
       "name": "currency-info-premium-title",
@@ -5615,6 +5771,10 @@
     {
       "name": "credit-cap-warning-desc",
       "value": "Osprey Modular Hardware bedauert, dir mitteilen zu müssen, dass du die interne Firmenguthabengrenze für Mitarbeiter der Zulu-Klasse erreicht hast.\n\nGib dein Firmenguthaben am besten für Freischaltungen, Teile, Kosmetik oder Fabrikate aus."
+    },
+    {
+      "name": "requisitions-available-reminder",
+      "value": "Du kannst es dir leisten, neue Bestellungen freizuschalten"
     },
     {
       "name": "max-amp-exceeded",
@@ -5767,6 +5927,10 @@
     {
       "name": "dashboard-meter-",
       "value": "METER"
+    },
+    {
+      "name": "dashboard-meter-tank",
+      "value": "GANG"
     },
     {
       "name": "dashboard-meter-collective",
@@ -5961,6 +6125,10 @@
       "value": "Bereit"
     },
     {
+      "name": "queue-backfill-existing",
+      "value": "Auffüllen in laufende Matches"
+    },
+    {
       "name": "queue-squad-not-ready",
       "value": "Trupp nicht bereit"
     },
@@ -6047,6 +6215,10 @@
     {
       "name": "queue-gamemode-deselect",
       "value": "Spielmodus wechseln"
+    },
+    {
+      "name": "matchmaking-connection-error",
+      "value": "FEHLER: VERBIDNUNG ZUM MATCHMAKING-SERVER FEHLGESCHLAGEN.\n\nBITTE ÜBERPRÜFE DIE NETZWERKVERBINDUNG.\n\n\n\n\n\nVersuche es mit einem VPN oder Cloudflare Warp, wenn das Problem trotz funktionierender Anmeldung weiterhin besteht. Bestimmte Spieler, insbesondere in Russland, haben berichtet, dass ihr ISP unseren Hosting-Service blockiert."
     },
     {
       "name": "floating-queue-title",
@@ -6226,7 +6398,7 @@
     },
     {
       "name": "exit-test-mode",
-      "value": "| L"
+      "value": "Testmodus verlassen"
     },
     {
       "name": "toggle-damage-tester",
@@ -6306,7 +6478,7 @@
     },
     {
       "name": "prefab-warning-overamp",
-      "value": "Datei '???' importiert"
+      "value": "Fabrikat überschreitet Energie-Limit"
     },
     {
       "name": "prefab-warning-invalid",
@@ -6379,6 +6551,10 @@
     {
       "name": "botfile-import-filepath",
       "value": "Dateipfad importieren"
+    },
+    {
+      "name": "prefab-import-log-template",
+      "value": "Datei '???' importiert"
     },
     {
       "name": "infolog_ffffff_test_run_please_ignore-title",
@@ -6634,7 +6810,7 @@
     },
     {
       "name": "infolog_39_tank_gears-body",
-      "value": "Wenn du Panzerketten verwendest, halte ${RobotDriveDown} gedrückt, um in den hohen Gang zu schalten. In diesem Gang steigen Direktantrieb und Geschwindigkeit stark an, dafür leidet die Wendigkeit. Nutze ihn für lange Strecken außerhalb des Kampfes oder für eine schnelle Flucht. Achte beim Gangwechsel auf die kurze Abklingzeit."
+      "value": "Bei der Nutzung von Panzerketten, drücke ${RobotDriveDown}, um in den hohen Gang zu schalten. Im hohen Gang steigt die Direktantriebsleistung und -geschwindigkeit stark an, allerdings auf Kosten der Wendefähigkeit. Verwende ihn, um außerhalb des Kampfes große Distanzen zurückzulegen oder um schneller zu entkommen. Achte beim Gangwechsel auf die kurze Abklingzeit. In den Einstellungen kann zwischen dem Umschalt- und Halteverhalten gewechselt werden."
     },
     {
       "name": "infolog_41_advanced_build_mode-title",

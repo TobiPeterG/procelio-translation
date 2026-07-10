@@ -3,19 +3,15 @@
     "description": "Glossary and manual overrides for automated German translation."
   },
   "by_key": {
-    "gamemode-TC": "TEAM-DEATHMATCH",
-    "confirm-user-operation": "Spieleraktion bestätigen",
-    "prefab-warning-overamp": "Datei '???' importiert",
-    "block-mod_spoofer-desc": "Tarnt bei Aktivierung dein IFF-Signal vorübergehend als verbündet, wodurch auch Minen und Raketenaufschaltungen getäuscht werden. Eigener und erhaltener Schaden lässt den Effekt schneller auslaufen.\n\nMehrfaches Ausrüsten erhöht die Tarnungsdauer.",
-    "tech-257-desc": "Tarnt bei Aktivierung dein IFF-Signal vorübergehend als verbündet. Täuscht auch Minen, automatische Verteidigungen und Raketenaufschaltungen.",
-    "tech-help-desc": "Willkommen im Freischaltkatalog des Procelio-Programms. Hier kannst du deine hart verdienten Firmen-Credits ausgeben, um Lizenzen für neue Komponenten auf deinen Bots freizuschalten.\n\nJede Kategorie hat ihren eigenen Baum aus Knoten, und jeder Knoten besitzt Voraussetzungen, die erfüllt sein müssen. Klicke auf einen Knoten, um mehr über seinen Inhalt und seine Voraussetzungen zu erfahren. Sobald alle Bedingungen erfüllt sind, kannst du Knoten mit Credits freischalten. Das schaltet die zugehörige Ausrüstung, Gegenstände oder Boni für deinen Account frei und öffnet gleichzeitig den Weg zu tieferen Knoten im jeweiligen Baum.\n\nSobald ein Ausrüstungsteil freigeschaltet ist, kann es in der Garage verwendet werden. Die meisten Basisteile stehen unbegrenzt zur Verfügung, während fortgeschrittenere Teile wie Module oder Kosmetik eventuell zusätzliche Käufe im Shop erfordern.\n\nRessourcenbelohnungen sind einmalige Gegenstandsboni für deinen Account. Alle Verkäufe sind endgültig.\n"
+    "score-kills": "Kills",
+    "score-assists": "Assists"
   },
   "by_source_text": {
     "Garage Bay": "Garagenplatz",
     "An additional garage bay for constructing and storing active bots.": "Ein zusätzlicher Garagenplatz zum Bauen und Speichern aktiver Bots.",
     "Loading Data...": "Daten werden geladen...",
     "Success!": "Erfolg!",
-    "Electrolaser Carbine": "Electrolaser-Stutzen",
+    "Electrolaser Carbine": "Elektrolaser-Stutzen",
     "Gauss Rifle": "Gauss-Gewehr",
     "Nova Cannon": "Nova-Kanone",
     "Rivet Rifle": "Nietengewehr",
@@ -32,7 +28,16 @@
     "Turret": "Revolver",
     "Flux Weaver": "Flux-Flechter",
     "Force Concussor": "Kraft-Schocker",
-    "Prefab": "Fabrikat"
+    "Prefab": "Fabrikat",
+    "Alpha Prospect": "Alpha Prospect",
+    "Deimos Nexus": "Deimos Nexus",
+    "Feldspar Valley": "Feldspar Valley",
+    "Icarus North": "Icarus North",
+    "High Mars Orbit": "High Mars Orbit",
+    "Gauss": "Gauss",
+    "Carbon": "Carbon",
+    "Osprey": "Osprey",
+    "Stacking grants additional charges.": "Mehrfachausrüstung bringt zusätzliche Ladungen."
   },
   "post_replace": [
     [
@@ -49,7 +54,7 @@
     ],
     [
       "Electrolaser Carbine",
-      "Electrolaser-Stutzen"
+      "Elektrolaser-Stutzen"
     ],
     [
       "Gauss Rifle",
