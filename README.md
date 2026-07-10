@@ -34,7 +34,7 @@ Source files:
 - `files/<LANGUAGE>/style.json`: optional per-language style overrides
 - `files/<LANGUAGE>/image.png`: language flag or icon
 - `files/<LANGUAGE>/glossary.json`: optional automation glossary for translation runs
-- `files/<LANGUAGE>/translation_cache.json`: optional automation cache for translation runs
+- `files/<LANGUAGE>/translation_state.txt`: optional automation state file for translation runs
 
 For `proceliotool`-only generation, `language.json` and `image.png` are the only critical files for your language. If using the Python helper tools, the others may be generated.
 
@@ -60,7 +60,11 @@ What it does:
 - Copies `files/ENGLISH/image.png` if the target image does not exist yet
 - Ensures `files/<LANGUAGE>/style.json` exists
 - Ensures `files/<LANGUAGE>/glossary.json` exists
-- Reuses a per-language glossary and translation cache when available
+- Stores the latest git commit that changed `files/ENGLISH/language.json` in a per-language state file
+- Keeps existing translated keys unchanged unless the glossary overrides them or the English source text changed since the last recorded English-source commit
+- Adds and translates new English keys automatically
+- Builds a temporary per-run translation reuse map so repeated English strings stay consistent during that run
+- Ignores uncommitted English-source changes by default and warns which keys were skipped
 
 ### Requirements
 - Python 3 with the `venv` module available
@@ -83,16 +87,11 @@ python3 auto_translate.py FRENCH \
   --authors "Your Name"
 ```
 
-Only rebuild the translation cache:
-```bash
-python3 auto_translate.py GERMAN --rebuild-cache-only
-```
-
-### Reusable glossary and cache
+### Reusable glossary and state
 
 The script stores reusable automation files inside the target language folder:
 - `files/<LANGUAGE>/glossary.json`
-- `files/<LANGUAGE>/translation_cache.json`
+- `files/<LANGUAGE>/translation_state.txt`
 - `files/<LANGUAGE>/style.json`
 
 #### `glossary.json`
@@ -103,22 +102,24 @@ It supports:
 - `by_source_text`: exact override by original English text
 - `post_replace`: simple find/replace pairs applied after translation
 
-#### `translation_cache.json`
-This file stores previously translated source strings so later runs can reuse them instead of retranslating identical English text.
+#### `translation_state.txt`
+This file stores the latest git commit hash that changed `files/ENGLISH/language.json` during the last `auto_translate.py` run.
 
 That means:
-- repeated strings become more consistent
-- reruns are faster
-- you can improve a pack over time without losing prior work
-- on each script run, the cache is refreshed from the current target `language.json` unless you use `--no-reuse-existing`
+- existing translated keys stay unchanged by default
+- if the English source value of an existing key changed between the stored source commit and the current source commit, that key is translated again
+- new English keys are added and translated automatically
+- glossary overrides still win over existing `language.json` values
+- repeated identical English strings can reuse already known translations during the same run
+- uncommitted English-source edits are ignored unless you explicitly opt in
 
 ### Helpful options
-- `--force-retranslate`: ignore cached translations and translate again
-- `--no-reuse-existing`: do not seed the cache from an existing target `language.json`
+- `--force-retranslate`: translate all non-glossary keys again
+- `--include-uncommitted-source-changes`: also translate uncommitted changes in `files/ENGLISH/language.json`
+- `--no-reuse-existing`: ignore the current target `language.json` and rebuild all keys through glossary/translation
 - `--glossary-path PATH`: use a different glossary file
-- `--cache-path PATH`: use a different cache file
+- `--state-path PATH`: use a different translation state file
 - `--write-glossary-template-only`: create the glossary file and stop
-- `--rebuild-cache-only`: rebuild `translation_cache.json` from the current target `language.json` and stop
 
 ### Notes
 - The script is best used for creating a first draft, not as a final replacement for manual review.
@@ -176,7 +177,7 @@ Each language pack consists of multiple files:
 2. `style.json`: optional style overrides for this language only
 3. `image.png`: the image shown next to the language in the menu
 4. `glossary.json`: optional automation glossary
-5. `translation_cache.json`: optional automation cache
+5. `translation_state.txt`: optional automation state file for `auto_translate.py`
 
 There is also one shared repository-wide style file:
 - `files/shared_style.json`

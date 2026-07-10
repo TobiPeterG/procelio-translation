@@ -77,18 +77,23 @@ def parse_args() -> argparse.Namespace:
         help="Optional glossary file path. Defaults to files/<LANG>/glossary.json.",
     )
     parser.add_argument(
-        "--cache-path",
-        help="Optional cache file path. Defaults to files/<LANG>/translation_cache.json.",
+        "--state-path",
+        help="Optional state file path. Defaults to files/<LANG>/translation_state.txt.",
+    )
+    parser.add_argument(
+        "--include-uncommitted-source-changes",
+        action="store_true",
+        help="Also translate uncommitted changes in files/ENGLISH/language.json.",
     )
     parser.add_argument(
         "--force-retranslate",
         action="store_true",
-        help="Ignore the stored translation cache and retranslate non-glossary values.",
+        help="Retranslate all non-glossary values.",
     )
     parser.add_argument(
         "--no-reuse-existing",
         action="store_true",
-        help="Do not seed the cache from an existing target language.json.",
+        help="Do not reuse existing values from the current target language.json.",
     )
     parser.add_argument(
         "--no-install",
@@ -99,11 +104,6 @@ def parse_args() -> argparse.Namespace:
         "--write-glossary-template-only",
         action="store_true",
         help="Create the glossary file if missing and exit without translating.",
-    )
-    parser.add_argument(
-        "--rebuild-cache-only",
-        action="store_true",
-        help="Refresh translation_cache.json from the current target language.json and exit.",
     )
     return parser.parse_args()
 
@@ -121,7 +121,7 @@ def run(cmd: list[str], *, env: dict[str, str] | None = None) -> None:
 def ensure_bootstrap_environment(args: argparse.Namespace) -> None:
     if os.environ.get(CHILD_ENVVAR) == "1":
         return
-    if args.write_glossary_template_only or args.rebuild_cache_only:
+    if args.write_glossary_template_only:
         return
 
     venv_dir = Path(args.venv_dir)
@@ -162,8 +162,8 @@ def default_glossary_path(language_dir: str) -> Path:
     return FILES_DIR / language_dir / "glossary.json"
 
 
-def default_cache_path(language_dir: str) -> Path:
-    return FILES_DIR / language_dir / "translation_cache.json"
+def default_state_path(language_dir: str) -> Path:
+    return FILES_DIR / language_dir / "translation_state.txt"
 
 
 def default_style_path(language_dir: str) -> Path:
@@ -180,6 +180,99 @@ def write_json(path: Path, payload: Any) -> None:
     with path.open("w", encoding="utf-8") as handle:
         json.dump(payload, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
+
+
+def read_state_commit(path: Path) -> str | None:
+    if not path.exists():
+        return None
+    value = path.read_text(encoding="utf-8").strip()
+    return value or None
+
+
+def write_state_commit(path: Path, commit_hash: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(f"{commit_hash}\n", encoding="utf-8")
+
+
+def git_output(args: list[str]) -> str:
+    return subprocess.check_output(args, text=True, cwd=REPO_ROOT).strip()
+
+
+def latest_commit_for_path(path: Path) -> str:
+    relative_path = path.relative_to(REPO_ROOT).as_posix()
+    return git_output(["git", "log", "-n", "1", "--format=%H", "--", relative_path])
+
+
+def read_json_from_git(commit_hash: str, path: Path) -> Any:
+    relative_path = path.relative_to(REPO_ROOT).as_posix()
+    return json.loads(git_output(["git", "show", f"{commit_hash}:{relative_path}"]))
+
+
+def path_has_uncommitted_changes(path: Path) -> bool:
+    relative_path = path.relative_to(REPO_ROOT).as_posix()
+    has_unstaged_changes = subprocess.run(
+        ["git", "diff", "--quiet", "--", relative_path],
+        cwd=REPO_ROOT,
+    ).returncode != 0
+    has_staged_changes = subprocess.run(
+        ["git", "diff", "--cached", "--quiet", "--", relative_path],
+        cwd=REPO_ROOT,
+    ).returncode != 0
+    return has_unstaged_changes or has_staged_changes
+
+
+def source_values_by_key(source_data: dict[str, Any]) -> dict[str, str]:
+    return {
+        entry["name"]: entry.get("value", "")
+        for entry in source_data.get("language_elements", [])
+        if "name" in entry
+    }
+
+
+def changed_existing_source_keys(
+    previous_source_data: dict[str, Any],
+    current_source_data: dict[str, Any],
+) -> set[str]:
+    previous_by_name = source_values_by_key(previous_source_data)
+    current_by_name = source_values_by_key(current_source_data)
+
+    return {
+        key_name
+        for key_name, current_value in current_by_name.items()
+        if key_name in previous_by_name and previous_by_name[key_name] != current_value
+    }
+
+
+def added_source_keys(
+    previous_source_data: dict[str, Any],
+    current_source_data: dict[str, Any],
+) -> set[str]:
+    previous_by_name = source_values_by_key(previous_source_data)
+    current_by_name = source_values_by_key(current_source_data)
+
+    return {
+        key_name
+        for key_name in current_by_name
+        if key_name not in previous_by_name
+    }
+
+
+def changed_source_keys_since_commit(
+    source_json: Path,
+    previous_commit: str | None,
+    current_source_data: dict[str, Any],
+) -> set[str]:
+    if not previous_commit:
+        return set()
+    try:
+        previous_source_data = read_json_from_git(previous_commit, source_json)
+    except subprocess.CalledProcessError:
+        print(
+            f"[warning] Stored source commit {previous_commit} is not available in git history. "
+            "Changed existing English keys cannot be detected for this run."
+        )
+        return set()
+    return changed_existing_source_keys(previous_source_data, current_source_data)
 
 
 def copy_template_if_missing(path: Path, template_name: str) -> dict[str, Any]:
@@ -228,38 +321,70 @@ def apply_post_replace(text: str, glossary: dict[str, Any]) -> str:
     return text
 
 
-def build_existing_translation_map(
+def resolve_glossary_value(
+    text: str,
+    glossary: dict[str, Any],
+    *,
+    key_name: str,
+) -> str | None:
+    if key_name in glossary["by_key"]:
+        return glossary["by_key"][key_name]
+    if text in glossary["by_source_text"]:
+        return apply_post_replace(glossary["by_source_text"][text], glossary)
+    return None
+
+
+def build_runtime_translation_map(
     source_data: dict[str, Any],
     target_data: dict[str, Any] | None,
+    glossary: dict[str, Any],
+    excluded_keys: set[str] | None = None,
 ) -> dict[str, str]:
+    excluded_keys = excluded_keys or set()
+    runtime_map = {
+        source_text: apply_post_replace(translated_text, glossary)
+        for source_text, translated_text in glossary.get("by_source_text", {}).items()
+        if source_text
+    }
     if not target_data:
-        return {}
+        return runtime_map
 
     target_by_name = {
         entry["name"]: entry
         for entry in target_data.get("language_elements", [])
         if "name" in entry
     }
-    mapping: dict[str, str] = {}
     for source_entry in source_data.get("language_elements", []):
-        target_entry = target_by_name.get(source_entry["name"])
+        key_name = source_entry.get("name")
+        source_value = source_entry.get("value", "")
+        if not key_name or not source_value:
+            continue
+        if key_name in excluded_keys:
+            continue
+        if key_name in glossary.get("by_key", {}):
+            continue
+        target_entry = target_by_name.get(key_name)
         if not target_entry:
             continue
-        source_value = source_entry.get("value", "")
         target_value = target_entry.get("value", "")
-        if source_value and target_value and source_value != target_value:
-            mapping.setdefault(source_value, target_value)
-    return mapping
+        if not target_value:
+            continue
+        runtime_map[source_value] = target_value
+
+    return runtime_map
 
 
-def rebuild_cache_from_existing_translation(
-    source_data: dict[str, Any],
-    target_data: dict[str, Any] | None,
-    existing_cache: dict[str, str] | None = None,
-) -> dict[str, str]:
-    refreshed_cache = dict(existing_cache or {})
-    refreshed_cache.update(build_existing_translation_map(source_data, target_data))
-    return refreshed_cache
+def key_needs_machine_translation(
+    source_entry: dict[str, Any],
+    glossary: dict[str, Any],
+    runtime_translation_map: dict[str, str],
+) -> bool:
+    source_value = source_entry.get("value", "")
+    if resolve_glossary_value(source_value, glossary, key_name=source_entry["name"]) is not None:
+        return False
+    if not source_value:
+        return False
+    return source_value not in runtime_translation_map
 
 
 def import_translator() -> Any:
@@ -277,19 +402,17 @@ def translate_value(
     translator: Any,
     text: str,
     glossary: dict[str, Any],
-    cache: dict[str, str],
+    runtime_translation_map: dict[str, str],
     *,
     key_name: str,
-    force_retranslate: bool,
 ) -> str:
-    if key_name in glossary["by_key"]:
-        return glossary["by_key"][key_name]
-    if text in glossary["by_source_text"]:
-        return glossary["by_source_text"][text]
+    glossary_value = resolve_glossary_value(text, glossary, key_name=key_name)
+    if glossary_value is not None:
+        return glossary_value
     if not text:
         return text
-    if not force_retranslate and text in cache:
-        return apply_post_replace(cache[text], glossary)
+    if text in runtime_translation_map:
+        return apply_post_replace(runtime_translation_map[text], glossary)
 
     protected_text, replacements = protect_text(text)
 
@@ -303,7 +426,7 @@ def translate_value(
             time.sleep(1.5 * (attempt + 1))
     translated = unprotect_text(translated, replacements)
     translated = apply_post_replace(translated, glossary)
-    cache[text] = translated
+    runtime_translation_map[text] = translated
     return translated
 
 
@@ -333,8 +456,10 @@ def translate_language(args: argparse.Namespace) -> None:
         else default_glossary_path(args.language_dir)
     )
     style_path = default_style_path(args.language_dir)
-    cache_path = (
-        Path(args.cache_path) if args.cache_path else default_cache_path(args.language_dir)
+    state_path = (
+        Path(args.state_path)
+        if args.state_path
+        else default_state_path(args.language_dir)
     )
 
     glossary = ensure_glossary(glossary_path)
@@ -348,28 +473,54 @@ def translate_language(args: argparse.Namespace) -> None:
     if not target_image.exists():
         shutil.copy2(source_image, target_image)
 
-    source_data = read_json(source_json)
+    current_source_commit = latest_commit_for_path(source_json)
+    worktree_source_data = read_json(source_json)
+    committed_source_data = read_json_from_git(current_source_commit, source_json)
     existing_target = read_json(target_json) if target_json.exists() else None
-    cache = read_json(cache_path) if cache_path.exists() else {}
-
-    if not args.no_reuse_existing:
-        cache = rebuild_cache_from_existing_translation(
-            source_data,
-            existing_target,
-            cache,
+    previous_commit = read_state_commit(state_path)
+    has_uncommitted_source_changes = path_has_uncommitted_changes(source_json)
+    uncommitted_changed_existing_keys = set()
+    uncommitted_added_keys = set()
+    source_data = committed_source_data
+    if has_uncommitted_source_changes:
+        uncommitted_changed_existing_keys = changed_existing_source_keys(
+            committed_source_data,
+            worktree_source_data,
         )
+        uncommitted_added_keys = added_source_keys(
+            committed_source_data,
+            worktree_source_data,
+        )
+        if args.include_uncommitted_source_changes:
+            source_data = worktree_source_data
+            affected_keys = sorted(uncommitted_changed_existing_keys | uncommitted_added_keys)
+            print(
+                "[warning] files/ENGLISH/language.json has uncommitted changes. "
+                "Including them because --include-uncommitted-source-changes was used."
+            )
+            if affected_keys:
+                print("[info] Uncommitted English-source keys included:")
+                for key_name in affected_keys:
+                    print(f"  - {key_name}")
+        else:
+            ignored_keys = sorted(uncommitted_changed_existing_keys | uncommitted_added_keys)
+            print(
+                "[warning] files/ENGLISH/language.json has uncommitted changes. "
+                "Ignoring them for this run. Commit them first or use "
+                "--include-uncommitted-source-changes."
+            )
+            if ignored_keys:
+                print("[warning] Ignored uncommitted English-source keys:")
+                for key_name in ignored_keys:
+                    print(f"  - {key_name}")
 
-    if args.rebuild_cache_only:
-        write_json(cache_path, cache)
-        print(f"Rebuilt cache for {args.language_dir} from current language.json")
-        print(f"cache: {cache_path}")
-        return
-
-    if not args.target_code:
-        raise SystemExit("--target-code is required unless --rebuild-cache-only is used.")
-
-    GoogleTranslator = import_translator()
-    translator = GoogleTranslator(source="en", target=args.target_code)
+    changed_source_keys = changed_source_keys_since_commit(
+        source_json,
+        previous_commit,
+        committed_source_data,
+    )
+    if args.include_uncommitted_source_changes:
+        changed_source_keys |= uncommitted_changed_existing_keys
 
     existing_by_name = (
         {
@@ -380,21 +531,73 @@ def translate_language(args: argparse.Namespace) -> None:
         if existing_target
         else {}
     )
+    if args.no_reuse_existing:
+        existing_by_name = {}
+        runtime_translation_map = build_runtime_translation_map(
+            source_data,
+            None,
+            glossary,
+            excluded_keys=changed_source_keys,
+        )
+    else:
+        runtime_translation_map = build_runtime_translation_map(
+            source_data,
+            existing_target,
+            glossary,
+            excluded_keys=changed_source_keys,
+        )
+
+    keys_to_translate = [
+        source_entry["name"]
+        for source_entry in source_data.get("language_elements", [])
+        if (
+            args.force_retranslate
+            or source_entry["name"] not in existing_by_name
+            or source_entry["name"] in changed_source_keys
+        )
+    ]
+
+    machine_translation_needed = any(
+        key_needs_machine_translation(source_entry, glossary, runtime_translation_map)
+        for source_entry in source_data.get("language_elements", [])
+        if source_entry["name"] in keys_to_translate
+    )
+
+    translator = None
+    if machine_translation_needed:
+        if not args.target_code:
+            raise SystemExit(
+                "--target-code is required when new or changed source entries need machine translation."
+            )
+        GoogleTranslator = import_translator()
+        translator = GoogleTranslator(source="en", target=args.target_code)
 
     translated_elements = []
-    unique_translated = 0
     for source_entry in source_data.get("language_elements", []):
+        key_name = source_entry["name"]
         source_value = source_entry.get("value", "")
-        translated_value = translate_value(
-            translator,
-            source_value,
-            glossary,
-            cache,
-            key_name=source_entry["name"],
-            force_retranslate=args.force_retranslate,
-        )
-        if source_value and source_value not in glossary["by_source_text"]:
-            unique_translated += int(source_value in cache)
+        glossary_value = resolve_glossary_value(source_value, glossary, key_name=key_name)
+        if glossary_value is not None:
+            translated_value = glossary_value
+        elif (
+            not args.force_retranslate
+            and key_name in existing_by_name
+            and key_name not in changed_source_keys
+        ):
+            translated_value = existing_by_name[key_name].get("value", "")
+        else:
+            if translator is None:
+                raise SystemExit(
+                    f"No translator available for key {key_name!r}. "
+                    "Re-run with --target-code."
+                )
+            translated_value = translate_value(
+                translator,
+                source_value,
+                glossary,
+                runtime_translation_map,
+                key_name=key_name,
+            )
         translated_elements.append(
             build_target_entry(
                 source_entry,
@@ -423,13 +626,14 @@ def translate_language(args: argparse.Namespace) -> None:
         output["version"] = existing_target["version"]
 
     write_json(target_json, output)
-    write_json(cache_path, cache)
+    write_state_commit(state_path, current_source_commit)
 
     print(f"Translated {args.language_dir} from {args.source_dir}")
     print(f"language.json: {target_json}")
     print(f"image.png:      {target_image}")
     print(f"glossary:       {glossary_path}")
-    print(f"cache:          {cache_path}")
+    print(f"state:          {state_path}")
+    print(f"source commit:  {current_source_commit}")
 
 
 def main() -> None:
